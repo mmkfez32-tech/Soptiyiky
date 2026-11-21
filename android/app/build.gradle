@@ -1,0 +1,43 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'app.vibetune.music'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'app.vibetune.music'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    signingConfigs {
+        // Kunci rilis dibaca dari environment (jangan commit keystore ke repo).
+        release {
+            def ks = System.getenv('VT_KEYSTORE')
+            if (ks) {
+                storeFile file(ks)
+                storePassword System.getenv('VT_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('VT_KEY_ALIAS')
+                keyPassword System.getenv('VT_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (System.getenv('VT_KEYSTORE')) signingConfig signingConfigs.release
+        }
+    }
+
+    // Web App (PWA) dipaket sebagai aset lokal aplikasi.
+    sourceSets { main { assets.srcDirs = ['../../www'] } }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    lint { abortOnError false }
+}

@@ -1,0 +1,138 @@
+{
+ "artists": [
+  {
+   "id": "nara-lumen",
+   "name": "Nara Lumen",
+   "c1": "#10b981",
+   "c2": "#065f46"
+  },
+  {
+   "id": "kode-biru",
+   "name": "Kode Biru",
+   "c1": "#06b6d4",
+   "c2": "#1e3a8a"
+  },
+  {
+   "id": "rinai-senja",
+   "name": "Rinai Senja",
+   "c1": "#f59e0b",
+   "c2": "#7c2d12"
+  }
+ ],
+ "albums": [
+  {
+   "id": "langit-pagi",
+   "title": "Langit Pagi",
+   "artist": "Nara Lumen",
+   "year": 2024,
+   "c1": "#34d399",
+   "c2": "#0f766e"
+  },
+  {
+   "id": "sirkuit",
+   "title": "Sirkuit",
+   "artist": "Kode Biru",
+   "year": 2025,
+   "c1": "#22d3ee",
+   "c2": "#4f46e5"
+  },
+  {
+   "id": "warung-kopi",
+   "title": "Warung Kopi",
+   "artist": "Rinai Senja",
+   "year": 2025,
+   "c1": "#fbbf24",
+   "c2": "#9a3412"
+  }
+ ],
+ "tracks": [
+  {
+   "id": "t1",
+   "title": "Fajar di Atas Awan",
+   "artist": "Nara Lumen",
+   "album": "Langit Pagi",
+   "duration": 29,
+   "audio": "audio/t1.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t2",
+   "title": "Jalan Pulang",
+   "artist": "Nara Lumen",
+   "album": "Langit Pagi",
+   "duration": 33,
+   "audio": "audio/t2.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t3",
+   "title": "Hujan Sore",
+   "artist": "Nara Lumen",
+   "album": "Langit Pagi",
+   "duration": 36,
+   "audio": "audio/t3.mp3",
+   "streaming_allowed": true,
+   "download_allowed": false,
+   "license_note": "Musik orisinal proyek VibeTune. Hanya streaming (contoh lagu tanpa izin unduh untuk menguji aturan PRD)."
+  },
+  {
+   "id": "t4",
+   "title": "Neon Malam",
+   "artist": "Kode Biru",
+   "album": "Sirkuit",
+   "duration": 22,
+   "audio": "audio/t4.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t5",
+   "title": "Piksel Rindu",
+   "artist": "Kode Biru",
+   "album": "Sirkuit",
+   "duration": 19,
+   "audio": "audio/t5.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t6",
+   "title": "Gelombang Pendek",
+   "artist": "Kode Biru",
+   "album": "Sirkuit",
+   "duration": 24,
+   "audio": "audio/t6.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t7",
+   "title": "Teduh",
+   "artist": "Rinai Senja",
+   "album": "Warung Kopi",
+   "duration": 31,
+   "audio": "audio/t7.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  },
+  {
+   "id": "t8",
+   "title": "Kopi Tubruk",
+   "artist": "Rinai Senja",
+   "album": "Warung Kopi",
+   "duration": 27,
+   "audio": "audio/t8.mp3",
+   "streaming_allowed": true,
+   "download_allowed": true,
+   "license_note": "Musik orisinal hasil sintesis proyek VibeTune (dibuat sendiri), bebas dipakai untuk proyek sekolah."
+  }
+ ]
+}

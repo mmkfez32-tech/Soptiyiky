@@ -1,0 +1,42 @@
+name: Build VibeTune APK
+on:
+  push: { branches: [main, master] }
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.7' }
+
+      # Tanda tangan rilis: pakai secret jika ada, kalau tidak buat keystore baru sekali pakai.
+      # Untuk update berkelanjutan, simpan keystore sendiri sebagai secret (VT_KEYSTORE_B64 dll).
+      - name: Siapkan keystore
+        run: |
+          if [ -n "${{ secrets.VT_KEYSTORE_B64 }}" ]; then
+            echo "${{ secrets.VT_KEYSTORE_B64 }}" | base64 -d > $RUNNER_TEMP/vt.jks
+            echo "VT_KEYSTORE_PASSWORD=${{ secrets.VT_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+            echo "VT_KEY_ALIAS=${{ secrets.VT_KEY_ALIAS }}" >> $GITHUB_ENV
+            echo "VT_KEY_PASSWORD=${{ secrets.VT_KEY_PASSWORD }}" >> $GITHUB_ENV
+          else
+            keytool -genkeypair -v -keystore $RUNNER_TEMP/vt.jks -alias vibetune -keyalg RSA -keysize 2048 \
+              -validity 10000 -storepass vibetune123 -keypass vibetune123 -dname "CN=VibeTune, O=Proyek Sekolah"
+            echo "VT_KEYSTORE_PASSWORD=vibetune123" >> $GITHUB_ENV
+            echo "VT_KEY_ALIAS=vibetune" >> $GITHUB_ENV
+            echo "VT_KEY_PASSWORD=vibetune123" >> $GITHUB_ENV
+          fi
+          echo "VT_KEYSTORE=$RUNNER_TEMP/vt.jks" >> $GITHUB_ENV
+
+      - name: Build APK rilis
+        working-directory: android
+        run: gradle assembleRelease --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VibeTune-release-apk
+          path: android/app/build/outputs/apk/release/*.apk

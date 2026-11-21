@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.VibeTune" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#10b981</item>
+        <item name="android:navigationBarColor">#ffffff</item>
+        <item name="android:windowBackground">#10b981</item>
+    </style>
+</resources>
