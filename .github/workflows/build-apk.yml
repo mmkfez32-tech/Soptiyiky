@@ -1,1 +1,49 @@
-.github/workflows/build-apk.yml
+
+name: Build VibeTune APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Find Gradle wrapper
+        id: gradle
+        shell: bash
+        run: |
+          GRADLEW=$(find . -type f -name gradlew | head -n 1)
+          if [ -z "$GRADLEW" ]; then
+            echo "Gradle wrapper tidak ditemukan!"
+            exit 1
+          fi
+          chmod +x "$GRADLEW"
+          echo "path=$GRADLEW" >> "$GITHUB_OUTPUT"
+
+      - name: Build APK
+        run: |
+          GRADLEW="${{ steps.gradle.outputs.path }}"
+          "$GRADLEW" -p "$(dirname "$GRADLEW")" assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: VibeTune-APK
+          path: '**/build/outputs/apk/**/*.apk'
+          if-no-files-found: error
